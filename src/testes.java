@@ -6,7 +6,6 @@ public class testes extends TestCase {
 	/*
 	 * Questão 1
 	 * */
-	
 	@Test
 	public void testarCalculoDaMedia() {
 		double n1 = 9.0;
@@ -16,84 +15,113 @@ public class testes extends TestCase {
 		assertEquals(8.0, resultado);
 	}
 	
-	Aluno aluno = new Aluno();
-	
 	@Test
-	public void testarSetGetNota1() {
-		aluno.setNota1(10.0);
-		double resultado = aluno.getNota1();
-		assertEquals(10.0, resultado);
+	public void testarGetNota1() {
+		double resultado = new Aluno().getNota1();
+		assertEquals(0.0, resultado);
 	}
 	
 	@Test
-	public void testarSetGetNota2() {
-		aluno.setNota2(9.0);
-		double resultado = aluno.getNota2();
-		assertEquals(9.0, resultado);
+	public void testarGetNota2() {
+		double resultado = new Aluno().getNota2();
+		assertEquals(0.0, resultado);
 	}
 	
 	@Test
-	public void testarSetGetNota3() {
-		aluno.setNota3(5.0);
-		double resultado = aluno.getNota3();
-		assertEquals(5.0, resultado);
+	public void testarGetNota3() {
+		double resultado = new Aluno().getNota3();
+		assertEquals(0.0, resultado);
 	}
 	
 	/*
 	 * Questão 2
 	 * */
 	@Test
-	public void testarPagamentoSemMulta() {
+	public void testarPagamentoSemAtraso() {
 		String dataVencimento = "10/09/2023";
 		double total = 100.0;
-		String resultado = new Pessoa().realizarPagamento(dataVencimento, total);
-		assertEquals("Pagamento realizado!", resultado);
+		double resultado = new Conta().calcularMulta(dataVencimento, total);
+		assertEquals(0.0, resultado);
 	}
 	
 	@Test
-	public void testarPagamentoComMulta() {
+	public void testarPagamentoComAtraso() {
 		String dataVencimento = "10/09/2022";
 		double total = 100.0;
-		String resultado = new Pessoa().realizarPagamento(dataVencimento, total);
-		assertEquals("Pagamento realizado com multa!", resultado);
+		double resultado = new Conta().calcularMulta(dataVencimento, total);
+		assertEquals(2.0, resultado);
 	}
 	
 	@Test
-	public void testarCalculoMulta() {
-		double total = 100.0;
-		double resultado = new Conta().calcularMulta(total);
-		assertEquals(2.0, resultado);
+	public void testarGetDataVencimento() {
+		String resultado = new Conta().getDataVencimento();
+		assertEquals("12/09/2022", resultado);
+	}
+	
+	@Test
+	public void testarGetTotal() {
+		double resultado = new Conta().getTotal();
+		assertEquals(0.0, resultado);
+	}
+	
+	@Test
+	public void testarGetMulta() {
+		double resultado = new Conta().getMulta();
+		assertEquals(0.0, resultado);
 	}
 	
 	/*
 	 * Questão 3
 	 * */
-	Eleitor eleitor = new Eleitor("João", 25);
-	
 	@Test
 	public void testarSeEleitorPodeVotar() {
-		
-		assertEquals("Você é obrigado a votar!", eleitor.verificarSePodeVotar(eleitor.getIdade()));
+		int idade = 18;
+		String resultado = new Eleitor().verificarSePodeVotar(idade);
+		assertEquals("Você é obrigado a votar!", resultado);
 	}
 	
 	@Test
 	public void testarSeEleitorDeMenorPodeVotar() {
-		assertEquals("Você não pode votar!", eleitor.verificarSePodeVotar(13));
+		int idade = 13;
+		String resultado = new Eleitor().verificarSePodeVotar(idade);
+		assertEquals("Você não pode votar!", resultado);
 	}
 	
 	@Test
 	public void testarEleitorFacultativo() {
-		assertEquals("O seu voto é facultativo!", eleitor.verificarSePodeVotar(17));
-		assertEquals("O seu voto é facultativo!", eleitor.verificarSePodeVotar(75));
+		int idade1 = 17;
+		int idade2 = 70;
+		String resultado1 = new Eleitor().verificarSePodeVotar(idade1);
+		String resultado2 = new Eleitor().verificarSePodeVotar(idade2);
+		assertEquals("O seu voto é facultativo!", resultado1);
+		assertEquals("O seu voto é facultativo!", resultado2);
 	}
 	
 	@Test
 	public void testarEleitorComIdadeMaiorQueLimite() {
-		assertEquals("Idade inválida!", eleitor.verificarSePodeVotar(200));
+		int idade = 151;
+		String resultado = new Eleitor().verificarSePodeVotar(idade);
+		assertEquals("Idade inválida!", resultado);
 	}
 	
 	@Test
 	public void testarEleitorComIdadeMenorQueLimite() {
-		assertEquals("Idade inválida!", eleitor.verificarSePodeVotar(-10));
+		int idade = -1;
+		String resultado = new Eleitor().verificarSePodeVotar(idade);
+		assertEquals("Idade inválida!", resultado);
+	}
+	
+	@Test
+	public void testarSetGetNome() {
+		Eleitor eleitor = new Eleitor();
+		eleitor.setNome("João");
+		String resultado = eleitor.getNome();
+		assertEquals("João", resultado);
+	}
+	
+	@Test
+	public void testarSetGetIdade() {
+		int resultado = new Eleitor().getIdade();
+		assertEquals(0, resultado);
 	}
 }

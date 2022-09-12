@@ -2,11 +2,6 @@ public class Eleitor {
 	private String nome;
 	private int idade;
 	
-	public Eleitor(String nome, int idade) {
-		this.nome = nome;
-		this.idade = idade;
-	}
-	
 	public String getNome() {
 		return nome;
 	}
@@ -15,9 +10,6 @@ public class Eleitor {
 	}
 	public int getIdade() {
 		return idade;
-	}
-	public void setIdade(int idade) {
-		this.idade = idade;
 	}
 	
 	public String verificarSePodeVotar(int idade) {
